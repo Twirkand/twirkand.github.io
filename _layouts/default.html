@@ -1,13 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ page.title | default: site.title }}</title>
-  <meta name="description" content="CV y repositorios destacados en GitHub." />
-  <link rel="stylesheet" href="/assets/css/styles.css">
-</head>
-<body>
-  {{ content }}
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <title>{{ page.title }}</title>
+
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    {{ content }}
+
+    <footer class="footer">© {{ site.time | date: "%Y" }} Nauzet Torres Tejera </footer>
+  </body>
 </html>
