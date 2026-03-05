@@ -1,0 +1,329 @@
+---
+layout: default
+title: CV Nauzet Torres Tejera
+---
+
+<header class="hero">
+  <h1>Nauzet Torres Tejera</h1>
+
+  <p class="subtitle">
+    Estudiante de Desarrollo de Aplicaciones Multiplataforma
+  </p>
+
+  <div class="hero-buttons">
+    <a href="https://github.com/Twirkand" class="btn">GitHub</a>
+    <a href="https://t.me/Twirkand" class="btn">Telegram</a>
+    <a href="mailto:ari.09.tt@gmail.com" class="btn">Email</a>
+  </div>
+</header>
+
+<section class="about container">
+  <div class="profile">
+    <div class="photo">
+      <img src="/assets/img/perfil.jpg" alt="Foto de perfil" />
+    </div>
+
+    <div>
+      <h2>Sobre mí</h2>
+
+      <p>
+        Soy estudiante y aspirante a desarrollador backend con gran interés en
+        software, sistemas y tecnología. Me gusta crear proyectos y mejorar mis
+        habilidades cada día.
+      </p>
+
+      <div class="skills">
+        <span>Java</span>
+        <span>SQL</span>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>Git</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container">
+  <h2>Proyectos personales</h2>
+
+  <div id="featured" class="cards"></div>
+</section>
+<section class="stats container">
+  <h2>GitHub Stats</h2>
+
+  <div class="stats-grid">
+    <div class="stat">
+      <div id="repoCount" class="stat-number">0</div>
+      <div class="stat-label">Repositorios</div>
+    </div>
+
+    <div class="stat">
+      <div id="starCount" class="stat-number">0</div>
+      <div class="stat-label">Estrellas</div>
+    </div>
+
+    <div class="stat">
+      <div id="followers" class="stat-number">0</div>
+      <div class="stat-label">Seguidores</div>
+    </div>
+
+    <div class="stat">
+      <div id="mainLang" class="stat-number">—</div>
+      <div class="stat-label">Lenguaje principal</div>
+    </div>
+  </div>
+</section>
+<section class="container">
+  <h2>Repositorios</h2>
+
+  <div class="toolbar">
+    <input id="q" class="input" placeholder="Buscar repositorios" />
+
+    <select id="sort" class="select">
+      <option value="updated">Actividad reciente</option>
+      <option value="stars">Estrellas</option>
+      <option value="name">Nombre</option>
+    </select>
+
+    <button class="btn active" data-topic="all">Todos</button>
+    <button class="btn" data-topic="showcase">Showcase</button>
+    <button class="btn" data-topic="web">Web</button>
+    <button class="btn" data-topic="backend">Backend</button>
+  </div>
+
+  <div id="repos" class="cards"></div>
+</section>
+
+<script>
+  const GITHUB_USERNAME = "Twirkand";
+  const FEATURED_TOPIC = "showcase";
+  let allRepos = [];
+  let activeTopic = "all";
+
+  function formatDate(iso) {
+    const d = new Date(iso);
+    return d.toLocaleDateString("es-ES", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    });
+  }
+
+  async function fetchRepos() {
+    const url = `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`;
+
+    const res = await fetch(url);
+
+    const repos = await res.json();
+
+    return repos.map((r) => ({
+      name: r.name,
+      html_url: r.html_url,
+      description: r.description || "",
+      language: r.language || "—",
+      stargazers_count: r.stargazers_count || 0,
+      updated_at: r.updated_at,
+      topics: r.topics || [],
+    }));
+  }
+  function renderFeatured(repos) {
+    const featured = repos
+      .filter((r) => r.topics.includes(FEATURED_TOPIC))
+      .slice(0, 6);
+
+    const el = document.getElementById("featured");
+
+    el.innerHTML = featured.length
+      ? ""
+      : `<div class="muted">Aún no tienes repos con topic <b>${FEATURED_TOPIC}</b>.</div>`;
+
+    featured.forEach((r) => {
+      const topics =
+        r.topics && r.topics.length
+          ? r.topics
+              .filter((t) => t !== FEATURED_TOPIC)
+              .slice(0, 4)
+              .map((t) => `<span class="pill">${t}</span>`)
+              .join("")
+          : "";
+
+      const html = `
+      <article class="card fade">
+
+        <h3>${r.name}</h3>
+
+        <p class="muted">
+        ${r.description || "Sin descripción"}
+        </p>
+
+        <div class="pillrow">
+          ${topics}
+        </div>
+
+        <div class="repoMeta">
+        ⭐ ${r.stargazers_count}
+        · ${r.language}
+        · ${formatDate(r.updated_at)}
+        </div>
+
+        <a class="btn" href="${r.html_url}" target="_blank">
+        Ver proyecto
+        </a>
+
+      </article>
+    `;
+
+      el.insertAdjacentHTML("beforeend", html);
+
+      const card = el.lastElementChild;
+      observer.observe(card);
+    });
+  }
+  function applyFilters(repos) {
+    const q = (document.getElementById("q").value || "").toLowerCase();
+    const sort = document.getElementById("sort").value;
+
+    let out = repos.filter((r) => {
+      const matchesText =
+        r.name.toLowerCase().includes(q) ||
+        (r.description || "").toLowerCase().includes(q);
+
+      const matchesTopic =
+        activeTopic === "all" ? true : r.topics.includes(activeTopic);
+
+      return matchesText && matchesTopic;
+    });
+
+    if (sort === "updated")
+      out.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
+    if (sort === "stars")
+      out.sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+    if (sort === "name") out.sort((a, b) => a.name.localeCompare(b.name));
+
+    return out;
+  }
+
+  function renderRepos(repos) {
+    const el = document.getElementById("repos");
+    const list = applyFilters(repos);
+
+    el.innerHTML = "";
+
+    list.forEach((r) => {
+      const html = `
+    <article class="card fade">
+
+      <h3>${r.name}</h3>
+
+      <p class="muted">
+      ${r.description || "Sin descripción"}
+      </p>
+
+      <div class="repoMeta">
+      ⭐ ${r.stargazers_count}
+      · ${r.language}
+      · ${formatDate(r.updated_at)}
+      </div>
+
+      <a class="btn" href="${r.html_url}" target="_blank">
+      Ver repositorio
+      </a>
+
+    </article>
+  `;
+
+      el.insertAdjacentHTML("beforeend", html);
+
+      const card = el.lastElementChild;
+      observer.observe(card);
+    });
+  }
+
+  function bindUI() {
+    document
+      .getElementById("q")
+      .addEventListener("input", () => renderRepos(allRepos));
+
+    document
+      .getElementById("sort")
+      .addEventListener("change", () => renderRepos(allRepos));
+
+    document.querySelectorAll(".btn[data-topic]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document
+          .querySelectorAll(".btn[data-topic]")
+          .forEach((b) => b.classList.remove("active"));
+
+        btn.classList.add("active");
+
+        activeTopic = btn.dataset.topic;
+
+        renderRepos(allRepos);
+      });
+    });
+  }
+
+  async function main() {
+    bindUI();
+
+    allRepos = await fetchRepos();
+
+    renderFeatured(allRepos);
+    renderRepos(allRepos);
+  }
+
+  main();
+  /* ANIMACIONES SCROLL */
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  });
+
+  document.querySelectorAll("section,.card,.stat").forEach((el) => {
+    el.classList.add("fade");
+
+    observer.observe(el);
+  });
+
+  /* STATS GITHUB */
+
+  async function loadStats() {
+    const user = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);
+    const userData = await user.json();
+
+    document.getElementById("repoCount").textContent = userData.public_repos;
+    document.getElementById("followers").textContent = userData.followers;
+
+    const repos = await fetchRepos();
+
+    let stars = 0;
+    let langs = {};
+
+    repos.forEach((r) => {
+      stars += r.stargazers_count;
+
+      if (r.language) {
+        langs[r.language] = (langs[r.language] || 0) + 1;
+      }
+    });
+
+    document.getElementById("starCount").textContent = stars;
+
+    const mainLang = Object.entries(langs).sort((a, b) => b[1] - a[1])[0];
+
+    if (mainLang) {
+      document.getElementById("mainLang").textContent = mainLang[0];
+    }
+  }
+
+  loadStats();
+  document.addEventListener("mousemove", (e) => {
+    document.body.style.setProperty("--x", e.clientX + "px");
+    document.body.style.setProperty("--y", e.clientY + "px");
+  });
+</script>
