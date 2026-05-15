@@ -745,7 +745,7 @@ body.neon-mode::before {
 ========================= */
 
 body.rainbow-mode {
-  animation: rainbowVars 8s linear infinite;
+  animation: rainbowVars 30s linear infinite;
 }
 
 /* VARIABLES CAMBIANDO */
