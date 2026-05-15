@@ -12,7 +12,7 @@
 
   --radius: 16px;
 
-  /* 🎯 variable de tema */
+  /* 🎯 SISTEMA DE TEMA */
   --accent: var(--pink);
   --accent-soft: var(--pink-soft);
 }
@@ -44,10 +44,9 @@ body {
 
   background: radial-gradient(
     circle at top,
-    color-mix(in srgb, var(--accent) 25%, transparent) 0%,
-    color-mix(in srgb, var(--accent) 15%, transparent) 35%,
-    rgba(10,10,15,0.9) 70%,
-    var(--bg) 100%
+    color-mix(in srgb, var(--accent) 25%, transparent),
+    rgba(10,10,15,0.9),
+    var(--bg)
   );
 }
 
@@ -63,20 +62,12 @@ body {
   font-size: 18px;
 }
 
-.hero-buttons {
-  margin-top: 30px;
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 /* BOTONES */
 .btn {
   padding: 10px 16px;
   border-radius: 10px;
-  border: 2px solid var(--accent);
 
+  border: 2px solid var(--accent);
   background: transparent;
   color: var(--accent-soft);
 
@@ -84,35 +75,11 @@ body {
   cursor: pointer;
 
   transition: 0.25s;
-  font-size: 14px;
-
-  position: relative;
-  overflow: hidden;
 }
 
 .btn:hover {
   background: var(--accent);
   color: #000;
-}
-
-.btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: linear-gradient(
-    120deg,
-    transparent,
-    color-mix(in srgb, var(--accent) 45%, transparent),
-    transparent
-  );
-
-  transform: translateX(-100%);
-  transition: transform 0.6s;
-}
-
-.btn:hover::after {
-  transform: translateX(100%);
 }
 
 /* CONTAINER */
@@ -122,49 +89,25 @@ body {
   padding: 60px 20px;
 }
 
-/* PERFIL */
-.profile {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
 /* SKILLS */
-.skills {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
 .skills span {
   border: 2px solid var(--accent);
+  color: var(--accent-soft);
   padding: 6px 12px;
   border-radius: 999px;
-  font-size: 12px;
-  color: var(--accent-soft);
 }
 
 /* CARDS */
-.cards {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
 .card {
   background: var(--card);
   border-radius: var(--radius);
   padding: 20px;
   border: 1px solid var(--border);
-
   transition: 0.25s;
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   border-color: var(--accent);
 }
 
@@ -175,7 +118,7 @@ body {
   color: var(--accent);
 }
 
-/* TOOLBAR */
+/* INPUTS */
 .input,
 .select {
   padding: 10px;
@@ -193,6 +136,7 @@ body {
 /* FOTO PERFIL */
 .photo img {
   border: 3px solid var(--accent-soft);
+  border-radius: 50%;
 }
 
 /* CURSOR GLOW */
