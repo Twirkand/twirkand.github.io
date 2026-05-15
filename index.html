@@ -329,35 +329,4 @@ title: CV Nauzet Torres Tejera
     document.body.style.setProperty("--x", e.clientX + "px");
     document.body.style.setProperty("--y", e.clientY + "px");
   });
-  /* MODO VERDE NEÓN */
-
-const profilePhoto = document.querySelector(".photo");
-
-let neonMode = false;
-
-profilePhoto.addEventListener("click", () => {
-  neonMode = !neonMode;
-
-  if (neonMode) {
-    document.documentElement.style.setProperty(
-      "--accent",
-      "var(--neon)"
-    );
-
-    document.documentElement.style.setProperty(
-      "--accent-soft",
-      "var(--neon-soft)"
-    );
-  } else {
-    document.documentElement.style.setProperty(
-      "--accent",
-      "var(--pink)"
-    );
-
-    document.documentElement.style.setProperty(
-      "--accent-soft",
-      "var(--pink-soft)"
-    );
-  }
-});
 </script>
