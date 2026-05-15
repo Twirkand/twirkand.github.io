@@ -95,6 +95,10 @@ title: CV Nauzet Torres Tejera
 
   <div id="repos" class="cards"></div>
 </section>
+<div id="screamer">
+  <img src="/assets/img/screamer.jpg" alt="😈" />
+  <audio id="screamSound" src="/assets/audio/scream.mp3"></audio>
+</div>
 
 <script>
   const GITHUB_USERNAME = "Twirkand";
@@ -330,11 +334,35 @@ title: CV Nauzet Torres Tejera
     document.body.style.setProperty("--y", e.clientY + "px");
 
   });
-/* MODO ARCOIRIS */
+  /* MODO ARCOIRIS */
 
-const profilePhoto = document.getElementById("profilePhoto");
+  let clickCount = 0;
 
-profilePhoto.addEventListener("click", () => {
-  document.body.classList.toggle("neon-mode");
-});
+  const profilePhoto = document.getElementById("profilePhoto");
+  const screamer = document.getElementById("screamer");
+  const sound = document.getElementById("screamSound");
+
+  profilePhoto.addEventListener("click", () => {
+    // NEON sigue funcionando como antes
+    document.body.classList.toggle("neon-mode");
+
+    // contador de clicks para el screamer
+    clickCount++;
+
+    if (clickCount === 10) {
+      triggerScreamer();
+    }
+  });
+
+  function triggerScreamer() {
+    screamer.classList.add("active");
+
+    sound.currentTime = 0;
+    sound.play();
+
+    setTimeout(() => {
+      screamer.classList.remove("active");
+      clickCount = 0;
+    }, 3000);
+  }
 </script>

@@ -695,49 +695,43 @@ body.neon-mode {
 /* HERO */
 
 body.neon-mode .hero {
-  background: radial-gradient(
-    circle at top,
-    rgba(57,255,20,0.25) 0%,
-    rgba(57,255,20,0.15) 35%,
-    rgba(10,10,15,0.9) 70%,
-    var(--bg) 100%
-  );
+  background: radial-gradient(circle at top,
+      rgba(57, 255, 20, 0.25) 0%,
+      rgba(57, 255, 20, 0.15) 35%,
+      rgba(10, 10, 15, 0.9) 70%,
+      var(--bg) 100%);
 }
 
 body.neon-mode .hero h1 {
-  text-shadow: 0 0 25px rgba(57,255,20,0.45);
+  text-shadow: 0 0 25px rgba(57, 255, 20, 0.45);
 }
 
 /* FOTO PERFIL */
 
 body.neon-mode .photo::before {
-  background: linear-gradient(
-    120deg,
-    #39ff14,
-    #7dff6b,
-    #39ff14,
-    #00ff99
-  );
+  background: linear-gradient(120deg,
+      #39ff14,
+      #7dff6b,
+      #39ff14,
+      #00ff99);
 }
 
 body.neon-mode .photo::after {
-  border: 2px dashed rgba(57,255,20,0.7);
+  border: 2px dashed rgba(57, 255, 20, 0.7);
 }
 
 body.neon-mode .photo:hover img {
   box-shadow:
-    0 0 35px rgba(57,255,20,0.6),
-    0 0 80px rgba(57,255,20,0.3);
+    0 0 35px rgba(57, 255, 20, 0.6),
+    0 0 80px rgba(57, 255, 20, 0.3);
 }
 
 /* CURSOR GLOW */
 
 body.neon-mode::before {
-  background: radial-gradient(
-    400px circle at var(--x, 50%) var(--y, 50%),
-    rgba(57,255,20,0.14),
-    transparent 60%
-  );
+  background: radial-gradient(400px circle at var(--x, 50%) var(--y, 50%),
+      rgba(57, 255, 20, 0.14),
+      transparent 60%);
 }
 
 /* =========================
@@ -755,6 +749,7 @@ body.rainbow-mode {
   from {
     --hue: 0deg;
   }
+
   to {
     --hue: 360deg;
   }
@@ -770,53 +765,43 @@ body.rainbow-mode .hero {
 
 @keyframes rainbowHero {
   0% {
-    background: radial-gradient(
-      circle at top,
-      hsla(var(--hue), 100%, 50%, 0.25) 0%,
-      hsla(var(--hue), 100%, 50%, 0.15) 35%,
-      rgba(10,10,15,0.9) 70%,
-      var(--bg) 100%
-    );
+    background: radial-gradient(circle at top,
+        hsla(var(--hue), 100%, 50%, 0.25) 0%,
+        hsla(var(--hue), 100%, 50%, 0.15) 35%,
+        rgba(10, 10, 15, 0.9) 70%,
+        var(--bg) 100%);
   }
 
   25% {
-    background: radial-gradient(
-      circle at top,
-      hsla(calc(var(--hue) + 60deg), 100%, 50%, 0.25) 0%,
-      hsla(calc(var(--hue) + 60deg), 100%, 50%, 0.15) 35%,
-      rgba(10,10,15,0.9) 70%,
-      var(--bg) 100%
-    );
+    background: radial-gradient(circle at top,
+        hsla(calc(var(--hue) + 60deg), 100%, 50%, 0.25) 0%,
+        hsla(calc(var(--hue) + 60deg), 100%, 50%, 0.15) 35%,
+        rgba(10, 10, 15, 0.9) 70%,
+        var(--bg) 100%);
   }
 
   50% {
-    background: radial-gradient(
-      circle at top,
-      hsla(calc(var(--hue) + 120deg), 100%, 50%, 0.25) 0%,
-      hsla(calc(var(--hue) + 120deg), 100%, 50%, 0.15) 35%,
-      rgba(10,10,15,0.9) 70%,
-      var(--bg) 100%
-    );
+    background: radial-gradient(circle at top,
+        hsla(calc(var(--hue) + 120deg), 100%, 50%, 0.25) 0%,
+        hsla(calc(var(--hue) + 120deg), 100%, 50%, 0.15) 35%,
+        rgba(10, 10, 15, 0.9) 70%,
+        var(--bg) 100%);
   }
 
   75% {
-    background: radial-gradient(
-      circle at top,
-      hsla(calc(var(--hue) + 180deg), 100%, 50%, 0.25) 0%,
-      hsla(calc(var(--hue) + 180deg), 100%, 50%, 0.15) 35%,
-      rgba(10,10,15,0.9) 70%,
-      var(--bg) 100%
-    );
+    background: radial-gradient(circle at top,
+        hsla(calc(var(--hue) + 180deg), 100%, 50%, 0.25) 0%,
+        hsla(calc(var(--hue) + 180deg), 100%, 50%, 0.15) 35%,
+        rgba(10, 10, 15, 0.9) 70%,
+        var(--bg) 100%);
   }
 
   100% {
-    background: radial-gradient(
-      circle at top,
-      hsla(calc(var(--hue) + 240deg), 100%, 50%, 0.25) 0%,
-      hsla(calc(var(--hue) + 240deg), 100%, 50%, 0.15) 35%,
-      rgba(10,10,15,0.9) 70%,
-      var(--bg) 100%
-    );
+    background: radial-gradient(circle at top,
+        hsla(calc(var(--hue) + 240deg), 100%, 50%, 0.25) 0%,
+        hsla(calc(var(--hue) + 240deg), 100%, 50%, 0.15) 35%,
+        rgba(10, 10, 15, 0.9) 70%,
+        var(--bg) 100%);
   }
 }
 
@@ -825,30 +810,28 @@ body.rainbow-mode .hero {
 ========================= */
 
 body.rainbow-mode .photo::before {
-  background: linear-gradient(
-    270deg,
-    hsl(var(--hue), 100%, 50%),
-    hsl(calc(var(--hue) + 60deg), 100%, 50%),
-    hsl(calc(var(--hue) + 120deg), 100%, 50%),
-    hsl(calc(var(--hue) + 180deg), 100%, 50%),
-    hsl(calc(var(--hue) + 240deg), 100%, 50%),
-    hsl(calc(var(--hue) + 300deg), 100%, 50%),
-    hsl(var(--hue), 100%, 50%)
-  );
+  background: linear-gradient(270deg,
+      hsl(var(--hue), 100%, 50%),
+      hsl(calc(var(--hue) + 60deg), 100%, 50%),
+      hsl(calc(var(--hue) + 120deg), 100%, 50%),
+      hsl(calc(var(--hue) + 180deg), 100%, 50%),
+      hsl(calc(var(--hue) + 240deg), 100%, 50%),
+      hsl(calc(var(--hue) + 300deg), 100%, 50%),
+      hsl(var(--hue), 100%, 50%));
 
   background-size: 400% 400%;
   animation: rainbowFlow 10s linear infinite;
 }
 
 body.rainbow-mode .photo::after {
-  border: 2px dashed rgba(255,255,255,0.6);
+  border: 2px dashed rgba(255, 255, 255, 0.6);
 }
 
 /* BRILLO FOTO */
 body.rainbow-mode .photo:hover img {
   box-shadow:
-    0 0 35px rgba(255,255,255,0.45),
-    0 0 80px rgba(255,255,255,0.25);
+    0 0 35px rgba(255, 255, 255, 0.45),
+    0 0 80px rgba(255, 255, 255, 0.25);
 }
 
 /* =========================
@@ -861,11 +844,9 @@ body.rainbow-mode::before {
   inset: 0;
   pointer-events: none;
 
-  background: radial-gradient(
-    400px circle at var(--x, 50%) var(--y, 50%),
-    hsla(var(--hue), 100%, 70%, 0.15),
-    transparent 60%
-  );
+  background: radial-gradient(400px circle at var(--x, 50%) var(--y, 50%),
+      hsla(var(--hue), 100%, 70%, 0.15),
+      transparent 60%);
 }
 
 /* =========================
@@ -880,4 +861,29 @@ body.rainbow-mode::before {
   100% {
     background-position: 100% 50%;
   }
+}
+
+#screamer {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+#screamer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#screamer.active {
+  opacity: 1;
+  pointer-events: all;
 }
