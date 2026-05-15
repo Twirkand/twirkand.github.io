@@ -741,53 +741,28 @@ body.neon-mode::before {
 }
 
 /* =========================
-   MODO ARCOIRIS
+   MODO ARCOÍRIS FLUIDO
+   (SIN SALTOS)
 ========================= */
 
 body.rainbow-mode {
-  animation: rainbowVars 30s linear infinite;
+  --hue: 0deg;
+  animation: hueRotate 20s linear infinite;
 }
 
-/* VARIABLES CAMBIANDO */
-
-@keyframes rainbowVars {
-  0% {
-    --pink: #ff0000;
-    --pink-soft: #ff6666;
+/* ANIMACIÓN GLOBAL DE COLOR */
+@keyframes hueRotate {
+  from {
+    --hue: 0deg;
   }
-
-  16% {
-    --pink: #ff7b00;
-    --pink-soft: #ffb366;
-  }
-
-  33% {
-    --pink: #ffee00;
-    --pink-soft: #fff799;
-  }
-
-  50% {
-    --pink: #00ff66;
-    --pink-soft: #7dffb2;
-  }
-
-  66% {
-    --pink: #00bfff;
-    --pink-soft: #7ddfff;
-  }
-
-  83% {
-    --pink: #8a2be2;
-    --pink-soft: #c299ff;
-  }
-
-  100% {
-    --pink: #ff008c;
-    --pink-soft: #ff80c7;
+  to {
+    --hue: 360deg;
   }
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 body.rainbow-mode .hero {
   animation: rainbowHero 8s linear infinite;
@@ -797,8 +772,8 @@ body.rainbow-mode .hero {
   0% {
     background: radial-gradient(
       circle at top,
-      rgba(255,0,0,0.25) 0%,
-      rgba(255,0,0,0.15) 35%,
+      hsla(var(--hue), 100%, 50%, 0.25) 0%,
+      hsla(var(--hue), 100%, 50%, 0.15) 35%,
       rgba(10,10,15,0.9) 70%,
       var(--bg) 100%
     );
@@ -807,8 +782,8 @@ body.rainbow-mode .hero {
   25% {
     background: radial-gradient(
       circle at top,
-      rgba(255,255,0,0.25) 0%,
-      rgba(255,255,0,0.15) 35%,
+      hsla(calc(var(--hue) + 60deg), 100%, 50%, 0.25) 0%,
+      hsla(calc(var(--hue) + 60deg), 100%, 50%, 0.15) 35%,
       rgba(10,10,15,0.9) 70%,
       var(--bg) 100%
     );
@@ -817,8 +792,8 @@ body.rainbow-mode .hero {
   50% {
     background: radial-gradient(
       circle at top,
-      rgba(0,255,100,0.25) 0%,
-      rgba(0,255,100,0.15) 35%,
+      hsla(calc(var(--hue) + 120deg), 100%, 50%, 0.25) 0%,
+      hsla(calc(var(--hue) + 120deg), 100%, 50%, 0.15) 35%,
       rgba(10,10,15,0.9) 70%,
       var(--bg) 100%
     );
@@ -827,8 +802,8 @@ body.rainbow-mode .hero {
   75% {
     background: radial-gradient(
       circle at top,
-      rgba(0,191,255,0.25) 0%,
-      rgba(0,191,255,0.15) 35%,
+      hsla(calc(var(--hue) + 180deg), 100%, 50%, 0.25) 0%,
+      hsla(calc(var(--hue) + 180deg), 100%, 50%, 0.15) 35%,
       rgba(10,10,15,0.9) 70%,
       var(--bg) 100%
     );
@@ -837,34 +812,32 @@ body.rainbow-mode .hero {
   100% {
     background: radial-gradient(
       circle at top,
-      rgba(255,0,140,0.25) 0%,
-      rgba(255,0,140,0.15) 35%,
+      hsla(calc(var(--hue) + 240deg), 100%, 50%, 0.25) 0%,
+      hsla(calc(var(--hue) + 240deg), 100%, 50%, 0.15) 35%,
       rgba(10,10,15,0.9) 70%,
       var(--bg) 100%
     );
   }
 }
 
-/* FOTO */
+/* =========================
+   FOTO
+========================= */
 
 body.rainbow-mode .photo::before {
   background: linear-gradient(
     270deg,
-    red,
-    orange,
-    yellow,
-    lime,
-    cyan,
-    blue,
-    violet,
-    red
+    hsl(var(--hue), 100%, 50%),
+    hsl(calc(var(--hue) + 60deg), 100%, 50%),
+    hsl(calc(var(--hue) + 120deg), 100%, 50%),
+    hsl(calc(var(--hue) + 180deg), 100%, 50%),
+    hsl(calc(var(--hue) + 240deg), 100%, 50%),
+    hsl(calc(var(--hue) + 300deg), 100%, 50%),
+    hsl(var(--hue), 100%, 50%)
   );
 
-  background-size: 1400% 1400%;
-
-  animation:
-    gradientSpin 8s ease infinite,
-    rainbowFlow 10s linear infinite;
+  background-size: 400% 400%;
+  animation: rainbowFlow 10s linear infinite;
 }
 
 body.rainbow-mode .photo::after {
@@ -872,24 +845,32 @@ body.rainbow-mode .photo::after {
 }
 
 /* BRILLO FOTO */
-
 body.rainbow-mode .photo:hover img {
   box-shadow:
     0 0 35px rgba(255,255,255,0.45),
     0 0 80px rgba(255,255,255,0.25);
 }
 
-/* CURSOR */
+/* =========================
+   CURSOR
+========================= */
 
 body.rainbow-mode::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
   background: radial-gradient(
     400px circle at var(--x, 50%) var(--y, 50%),
-    rgba(255,255,255,0.12),
+    hsla(var(--hue), 100%, 70%, 0.15),
     transparent 60%
   );
 }
 
-/* ANIMACION */
+/* =========================
+   ANIMACIONES AUXILIARES
+========================= */
 
 @keyframes rainbowFlow {
   0% {
