@@ -343,10 +343,8 @@ title: CV Nauzet Torres Tejera
   const sound = document.getElementById("screamSound");
 
   profilePhoto.addEventListener("click", () => {
-    // NEON sigue funcionando como antes
     document.body.classList.toggle("neon-mode");
 
-    // contador de clicks para el screamer
     clickCount++;
 
     if (clickCount === 10) {
@@ -355,10 +353,16 @@ title: CV Nauzet Torres Tejera
   });
 
   function triggerScreamer() {
+    if (!screamer || !sound) return; // 🔥 evita romper todo
+
     screamer.classList.add("active");
 
     sound.currentTime = 0;
-    sound.play();
+
+    const playPromise = sound.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => { });
+    }
 
     setTimeout(() => {
       screamer.classList.remove("active");
