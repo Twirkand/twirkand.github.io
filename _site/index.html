@@ -21,7 +21,7 @@ title: CV Nauzet Torres Tejera
 
 <section class="about container">
   <div class="profile">
-    <div class="photo">
+    <div class="photo" id="profilePhoto">
       <img src="/assets/img/perfil.jpg" alt="Foto de perfil" />
     </div>
 
@@ -143,10 +143,10 @@ title: CV Nauzet Torres Tejera
       const topics =
         r.topics && r.topics.length
           ? r.topics
-              .filter((t) => t !== FEATURED_TOPIC)
-              .slice(0, 4)
-              .map((t) => `<span class="pill">${t}</span>`)
-              .join("")
+            .filter((t) => t !== FEATURED_TOPIC)
+            .slice(0, 4)
+            .map((t) => `<span class="pill">${t}</span>`)
+            .join("")
           : "";
 
       const html = `
@@ -328,5 +328,13 @@ title: CV Nauzet Torres Tejera
   document.addEventListener("mousemove", (e) => {
     document.body.style.setProperty("--x", e.clientX + "px");
     document.body.style.setProperty("--y", e.clientY + "px");
+
   });
+/* MODO ARCOIRIS */
+
+const profilePhoto = document.getElementById("profilePhoto");
+
+profilePhoto.addEventListener("click", () => {
+  document.body.classList.toggle("rainbow-mode");
+});
 </script>

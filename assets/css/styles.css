@@ -739,3 +739,164 @@ body.neon-mode::before {
     transparent 60%
   );
 }
+
+/* =========================
+   MODO ARCOIRIS
+========================= */
+
+body.rainbow-mode {
+  animation: rainbowVars 8s linear infinite;
+}
+
+/* VARIABLES CAMBIANDO */
+
+@keyframes rainbowVars {
+  0% {
+    --pink: #ff0000;
+    --pink-soft: #ff6666;
+  }
+
+  16% {
+    --pink: #ff7b00;
+    --pink-soft: #ffb366;
+  }
+
+  33% {
+    --pink: #ffee00;
+    --pink-soft: #fff799;
+  }
+
+  50% {
+    --pink: #00ff66;
+    --pink-soft: #7dffb2;
+  }
+
+  66% {
+    --pink: #00bfff;
+    --pink-soft: #7ddfff;
+  }
+
+  83% {
+    --pink: #8a2be2;
+    --pink-soft: #c299ff;
+  }
+
+  100% {
+    --pink: #ff008c;
+    --pink-soft: #ff80c7;
+  }
+}
+
+/* HERO */
+
+body.rainbow-mode .hero {
+  animation: rainbowHero 8s linear infinite;
+}
+
+@keyframes rainbowHero {
+  0% {
+    background: radial-gradient(
+      circle at top,
+      rgba(255,0,0,0.25) 0%,
+      rgba(255,0,0,0.15) 35%,
+      rgba(10,10,15,0.9) 70%,
+      var(--bg) 100%
+    );
+  }
+
+  25% {
+    background: radial-gradient(
+      circle at top,
+      rgba(255,255,0,0.25) 0%,
+      rgba(255,255,0,0.15) 35%,
+      rgba(10,10,15,0.9) 70%,
+      var(--bg) 100%
+    );
+  }
+
+  50% {
+    background: radial-gradient(
+      circle at top,
+      rgba(0,255,100,0.25) 0%,
+      rgba(0,255,100,0.15) 35%,
+      rgba(10,10,15,0.9) 70%,
+      var(--bg) 100%
+    );
+  }
+
+  75% {
+    background: radial-gradient(
+      circle at top,
+      rgba(0,191,255,0.25) 0%,
+      rgba(0,191,255,0.15) 35%,
+      rgba(10,10,15,0.9) 70%,
+      var(--bg) 100%
+    );
+  }
+
+  100% {
+    background: radial-gradient(
+      circle at top,
+      rgba(255,0,140,0.25) 0%,
+      rgba(255,0,140,0.15) 35%,
+      rgba(10,10,15,0.9) 70%,
+      var(--bg) 100%
+    );
+  }
+}
+
+/* FOTO */
+
+body.rainbow-mode .photo::before {
+  background: linear-gradient(
+    270deg,
+    red,
+    orange,
+    yellow,
+    lime,
+    cyan,
+    blue,
+    violet,
+    red
+  );
+
+  background-size: 1400% 1400%;
+
+  animation:
+    gradientSpin 8s ease infinite,
+    rainbowFlow 10s linear infinite;
+}
+
+body.rainbow-mode .photo::after {
+  border: 2px dashed rgba(255,255,255,0.6);
+}
+
+/* BRILLO FOTO */
+
+body.rainbow-mode .photo:hover img {
+  box-shadow:
+    0 0 35px rgba(255,255,255,0.45),
+    0 0 80px rgba(255,255,255,0.25);
+}
+
+/* CURSOR */
+
+body.rainbow-mode::before {
+  background: radial-gradient(
+    400px circle at var(--x, 50%) var(--y, 50%),
+    rgba(255,255,255,0.12),
+    transparent 60%
+  );
+}
+
+/* ANIMACION */
+
+@keyframes rainbowFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
